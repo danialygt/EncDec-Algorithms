@@ -26,6 +26,31 @@ namespace DES
             return Encoding.ASCII.GetString(byteList.ToArray());
         }
 
+        public static int[] BinaryStringToIntArray(this string data)
+        {
+            var tmp = new int[data.Length];
+            for (int i = 0; i < data.Length; i++)
+            {
+                tmp[i] = (data[i] == '1') ? 1 : 0;
+            }
+            return tmp;
+        }
 
+        public static bool IsBinaryString(this string data)
+        {
+            if (string.IsNullOrEmpty(data))
+            {
+                return false;
+            }
+
+            foreach (char item in data)
+            {
+                if(item != '0' && item != '1')
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

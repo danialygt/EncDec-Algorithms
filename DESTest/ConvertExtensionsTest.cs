@@ -38,5 +38,26 @@ namespace DESTest
         }
 
 
+        [Theory]
+        [InlineData("01000001", new int[] { 0,1,0,0,0,0,0,1 })]
+        [InlineData("0100100001100101011011000110110001101111",
+            new int[] { 0,1,0,0,1,0,0,0,0,1,1,0,0,1,0,1,0,1,1,0,1,1,0,0,0,1,1,0,1,1,0,0,0,1,1,0,1,1,1,1 })]
+        [InlineData("", new int[] { })]
+        public void BinaryStringToIntArrayTest(string binaryText, int[] binaryArray)
+        {
+            Assert.Equal(binaryArray, binaryText.BinaryStringToIntArray());
+        }
+
+        [Theory]
+        [InlineData("010", true)]
+        [InlineData("000", true)]
+        [InlineData("111", true)]
+        [InlineData("0F1", false)]
+        [InlineData("@^", false)]
+        [InlineData("", false)]
+        public void IsBinaryStringTest(string binaryText, bool isBinaryString)
+        {
+            Assert.Equal(isBinaryString, binaryText.IsBinaryString());
+        }
     }
 }
