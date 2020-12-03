@@ -1,4 +1,6 @@
-﻿namespace DES
+﻿using System.Collections.Generic;
+
+namespace DES
 {
     public sealed class DESFixedData
     {
@@ -94,6 +96,8 @@
                                                       { 2, 1, 14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11 }
                                                     };
 
+        public static int[][,] SBoxes = new int[][,] { SBox1, SBox2, SBox3, SBox4, 
+            SBox5, SBox6, SBox7, SBox8 };
 
         public static int[] PermutationP = new int[32] { 16, 7, 20, 21, 
                                                          29, 12, 28, 17, 
