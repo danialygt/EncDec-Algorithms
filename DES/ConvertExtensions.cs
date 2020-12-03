@@ -52,5 +52,53 @@ namespace DES
             }
             return true;
         }
+    
+        public static int ToDecimalInt(this int[] data)
+        {
+            int sum = 0;
+            int len = data.Length;
+            for (int i = 0; i < len; i++)
+            {
+                if(data[i] == 1)
+                {
+                    sum += (int)Math.Pow(2, len - 1 - i);
+                }
+            }
+            return sum;
+        }
+    
+        public static int[] ToIntArray4Bit(this int data)
+        {
+            if(data > 15 || data < 0)
+            {
+                throw new ArgumentOutOfRangeException("number must between 0 and 15");
+            }
+            var t = new int[4];
+            
+            for (int i = 3; i >= 0; i--)
+            {
+                if(data < 0)
+                {
+                    data = 0;
+                }
+                t[i] = data % 2;
+                data = (int)(data / 2);
+            }
+
+            return t;
+        }
+
+
+        public static string IntArrayToString(this int[] data)
+        {
+            string sum = "";
+            for (int i = 0; i < data.Length; i++)
+            {
+                sum += data[i].ToString();
+            }
+            return sum;
+        }
+
+
     }
 }
