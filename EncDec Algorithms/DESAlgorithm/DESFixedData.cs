@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DES
+namespace Alghotithms.DESAlgorithm
 {
     public sealed class DESFixedData
     {
@@ -96,17 +96,17 @@ namespace DES
                                                       { 2, 1, 14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11 }
                                                     };
 
-        public static int[][,] SBoxes = new int[][,] { SBox1, SBox2, SBox3, SBox4, 
+        public static int[][,] SBoxes = new int[][,] { SBox1, SBox2, SBox3, SBox4,
             SBox5, SBox6, SBox7, SBox8 };
 
-        public static int[] PermutationP = new int[32] { 16, 7, 20, 21, 
-                                                         29, 12, 28, 17, 
-                                                          1, 15, 23, 26, 
-                                                          5, 18, 31, 10, 
-                                                          2, 8, 24, 14, 
+        public static int[] PermutationP = new int[32] { 16, 7, 20, 21,
+                                                         29, 12, 28, 17,
+                                                          1, 15, 23, 26,
+                                                          5, 18, 31, 10,
+                                                          2, 8, 24, 14,
                                                          32, 27, 3, 9,
-                                                         19, 13, 30, 6, 
-                                                         22, 11, 4, 25 
+                                                         19, 13, 30, 6,
+                                                         22, 11, 4, 25
                                                        };
 
         public static int[] FinalPermutation = new int[64] { 40,  8, 48, 16, 56, 24, 64, 32,
@@ -116,7 +116,7 @@ namespace DES
                                                              36,  4, 44, 12, 52, 20, 60, 28,
                                                              35,  3, 43, 11, 51, 19, 59, 27,
                                                              34,  2, 42, 10, 50, 18, 58, 26,
-                                                             33,  1, 41,  9, 49, 17, 57, 25 
+                                                             33,  1, 41,  9, 49, 17, 57, 25
                                                             };
 
     }

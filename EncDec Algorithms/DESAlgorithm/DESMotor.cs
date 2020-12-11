@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Alghotithms.Extensions;
+using System;
 using System.Collections.Generic;
 
-namespace DES
+namespace Alghotithms.DESAlgorithm
 {
     public class DESMotor
     {
-        
+
 
         public string Encrypt(string plainText, string stringKey)
         {
@@ -298,7 +299,7 @@ namespace DES
             for (int i = 0; i < DESFixedData.EBitSelection.Length; i++)
             {
                 eRTextXorSubkeys[i] = rText[DESFixedData.EBitSelection[i] - 1] ^ _subkey[i];
-                BArray[(int)(i / 6), (i % 6)] = eRTextXorSubkeys[i];
+                BArray[i / 6, i % 6] = eRTextXorSubkeys[i];
             }
 
             // get Sboxes
@@ -308,7 +309,7 @@ namespace DES
                 int column = (new int[4] { BArray[i, 1], BArray[i, 2],
                     BArray[i, 3], BArray[i, 4] }).ToDecimalInt();
 
-                _4bitOfSbox[i] = (DESFixedData.SBoxes[i][row, column]).ToIntArray4Bit();
+                _4bitOfSbox[i] = DESFixedData.SBoxes[i][row, column].ToIntArray4Bit();
             }
             for (int i = 0; i < _4bitOfSbox.Length; i++)
             {

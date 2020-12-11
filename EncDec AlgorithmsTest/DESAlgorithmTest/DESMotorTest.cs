@@ -1,10 +1,10 @@
-﻿using DES;
+﻿using Alghotithms.DESAlgorithm;
 using System;
 using System.Linq;
 using System.Reflection;
 using Xunit;
 
-namespace DESTest
+namespace AlghotithmsTest.DESAlgorithmTest
 {
     public class DESMotorTest
     {
@@ -27,9 +27,9 @@ namespace DESTest
                     "1001001000101100011111111100011010011100000101011100100011011011"
         )]
 
-        public void EncryptTest(string plainText, string key, string cipherText) 
+        public void EncryptTest(string plainText, string key, string cipherText)
         {
-            Assert.Equal(cipherText, desMotor.Encrypt(plainText, key));        
+            Assert.Equal(cipherText, desMotor.Encrypt(plainText, key));
         }
 
 

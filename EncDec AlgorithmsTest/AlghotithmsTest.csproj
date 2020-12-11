@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DES\DES.csproj" />
+    <ProjectReference Include="..\DES\Alghotithms.csproj" />
   </ItemGroup>
 
 </Project>

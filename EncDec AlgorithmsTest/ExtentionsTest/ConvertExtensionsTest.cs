@@ -1,11 +1,11 @@
-﻿using DES;
+﻿using Alghotithms.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
 
-namespace DESTest
+namespace AlghotithmsTest.ExtentionsTest
 {
     public class ConvertExtensionsTest
     {
@@ -29,7 +29,7 @@ namespace DESTest
         [InlineData("0100100001100101011011000110110001101111", "Hello")]
         [InlineData("00110101001100010011011000110100001110000011100100110110001101010011011000110001",
             "5164896561")]
-        [InlineData("011100110110010001101010011010110110110000100000011000010111001100100100001100110011010000100101011001000011000001101111011010010110111101100001001000000110111101110011", 
+        [InlineData("011100110110010001101010011010110110110000100000011000010111001100100100001100110011010000100101011001000011000001101111011010010110111101100001001000000110111101110011",
             "sdjkl as$34%d0oioa os")]
         [InlineData("", "")]
         public void BinaryStringToStringTest(string binaryText, string text)
@@ -39,9 +39,9 @@ namespace DESTest
 
 
         [Theory]
-        [InlineData("01000001", new int[] { 0,1,0,0,0,0,0,1 })]
+        [InlineData("01000001", new int[] { 0, 1, 0, 0, 0, 0, 0, 1 })]
         [InlineData("0100100001100101011011000110110001101111",
-            new int[] { 0,1,0,0,1,0,0,0,0,1,1,0,0,1,0,1,0,1,1,0,1,1,0,0,0,1,1,0,1,1,0,0,0,1,1,0,1,1,1,1 })]
+            new int[] { 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1 })]
         [InlineData("", new int[] { })]
         public void BinaryStringToIntArrayTest(string binaryText, int[] binaryArray)
         {
@@ -73,11 +73,11 @@ namespace DESTest
         }
 
         [Theory]
-        [InlineData( 1, new int[] { 0, 0, 0, 1 })]
-        [InlineData( 2, new int[] { 0, 0, 1, 0 })]
-        [InlineData( 3, new int[] { 0, 0, 1, 1 })]
-        [InlineData( 0, new int[] { 0, 0, 0, 0 })]
-        [InlineData( 7, new int[] { 0, 1, 1, 1 })]
+        [InlineData(1, new int[] { 0, 0, 0, 1 })]
+        [InlineData(2, new int[] { 0, 0, 1, 0 })]
+        [InlineData(3, new int[] { 0, 0, 1, 1 })]
+        [InlineData(0, new int[] { 0, 0, 0, 0 })]
+        [InlineData(7, new int[] { 0, 1, 1, 1 })]
         [InlineData(15, new int[] { 1, 1, 1, 1 })]
         [InlineData(13, new int[] { 1, 1, 0, 1 })]
         [InlineData(14, new int[] { 1, 1, 1, 0 })]

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DES
+namespace Alghotithms.Extensions
 {
     public static class ConvertExtensions
     {
@@ -18,7 +18,7 @@ namespace DES
 
         public static string BinaryStringToString(this string data)
         {
-            List<Byte> byteList = new List<Byte>();
+            List<byte> byteList = new List<byte>();
             for (int i = 0; i < data.Length; i += 8)
             {
                 byteList.Add(Convert.ToByte(data.Substring(i, 8), 2));
@@ -31,7 +31,7 @@ namespace DES
             var tmp = new int[data.Length];
             for (int i = 0; i < data.Length; i++)
             {
-                tmp[i] = (data[i] == '1') ? 1 : 0;
+                tmp[i] = data[i] == '1' ? 1 : 0;
             }
             return tmp;
         }
@@ -45,44 +45,44 @@ namespace DES
 
             foreach (char item in data)
             {
-                if(item != '0' && item != '1')
+                if (item != '0' && item != '1')
                 {
                     return false;
                 }
             }
             return true;
         }
-    
+
         public static int ToDecimalInt(this int[] data)
         {
             int sum = 0;
             int len = data.Length;
             for (int i = 0; i < len; i++)
             {
-                if(data[i] == 1)
+                if (data[i] == 1)
                 {
                     sum += (int)Math.Pow(2, len - 1 - i);
                 }
             }
             return sum;
         }
-    
+
         public static int[] ToIntArray4Bit(this int data)
         {
-            if(data > 15 || data < 0)
+            if (data > 15 || data < 0)
             {
                 throw new ArgumentOutOfRangeException("number must between 0 and 15");
             }
             var t = new int[4];
-            
+
             for (int i = 3; i >= 0; i--)
             {
-                if(data < 0)
+                if (data < 0)
                 {
                     data = 0;
                 }
                 t[i] = data % 2;
-                data = (int)(data / 2);
+                data = data / 2;
             }
 
             return t;
