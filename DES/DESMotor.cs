@@ -194,11 +194,115 @@ namespace DES
 
 
 
+        private int[] functionReverce(int[,] rText, int n)
+        {
+            int[] eRTextXorSubkeys = new int[48];
+            int[,] BArray = new int[8, 6];
+            int[][] _4bitOfSbox = new int[8][];
+            int[] tmp = new int[32];
+            int[] final = new int[32];
+
+
+            // xor and make b array
+            for (int i = 0; i < DESFixedData.EBitSelection.Length; i++)
+            {
+                eRTextXorSubkeys[i] = rText[n - 1, DESFixedData.EBitSelection[i] - 1] ^ _subkeys[17 - n - 1, i];
+                BArray[(int)(i / 6), (i % 6)] = eRTextXorSubkeys[i];
+            }
+
+            // get Sboxes
+            for (int i = 0; i < 8; i++)
+            {
+                int row = (new int[2] { BArray[i, 0], BArray[i, 5] }).ToDecimalInt();
+                int column = (new int[4] { BArray[i, 1], BArray[i, 2],
+                    BArray[i, 3], BArray[i, 4] }).ToDecimalInt();
+
+                _4bitOfSbox[i] = (DESFixedData.SBoxes[i][row, column]).ToIntArray4Bit();
+            }
+            for (int i = 0; i < _4bitOfSbox.Length; i++)
+            {
+                for (int j = 0; j < _4bitOfSbox[i].Length; j++)
+                {
+                    tmp[i * 4 + j] = _4bitOfSbox[i][j];
+                }
+            }
+
+            // permutation P
+            for (int i = 0; i < DESFixedData.PermutationP.Length; i++)
+            {
+                final[i] = tmp[DESFixedData.PermutationP[i] - 1];
+            }
+
+            return final;
+        }
+
+
 
         public string Decrypt(string cipherText, string stringKey)
         {
+            int[] initialPermutation = new int[64];
+            int[] finalPermutation = new int[64];
+            int[] finalRound = new int[64];
+            int[,] lTextD = new int[17, 32];
+            int[,] rTextD = new int[17, 32];
 
-            return "plaittexemon";
+
+            if (string.IsNullOrEmpty(cipherText))
+            {
+                throw new ArgumentNullException("cipher text is empty!");
+            }
+            if (cipherText.Length != 64)
+            {
+                throw new ArgumentOutOfRangeException("cipher text must be 64 bit");
+            }
+            if (!cipherText.IsBinaryString())
+            {
+                throw new ArgumentException("cipher text must be a string of binaray numbers");
+            }
+
+            GenerateSubKeys(stringKey);
+
+            var cipherTextArray = cipherText.BinaryStringToIntArray();
+
+
+            // do initial permutation
+            for (int i = 0; i < DESFixedData.InitialPermutation.Length; i++)
+            {
+                initialPermutation[i] = cipherTextArray[DESFixedData.InitialPermutation[i] - 1];
+                if(i < 32)
+                {
+                    lTextD[0, i] = initialPermutation[i];
+                }
+                else
+                {
+                    rTextD[0, i - 32] = initialPermutation[i];
+                }
+            }
+
+
+            // do 16 round 
+            for (int i = 1; i <= 16; i++)
+            {
+                int[] result = functionReverce(rTextD, i);
+                for (int j = 0; j < 32; j++)
+                {
+                    lTextD[i, j] = rTextD[i - 1, j];
+                    rTextD[i, j] = lTextD[i - 1, j] ^ result[j];
+                    if (i == 16)
+                    { // after last round L and R must be Swap!
+                        finalRound[j] = rTextD[16, j];
+                        finalRound[j + 32] = lTextD[16, j];
+                    }
+                }
+            }
+
+            //last permutataion
+            for (int i = 0; i < DESFixedData.FinalPermutation.Length; i++)
+            {
+                finalPermutation[i] = finalRound[DESFixedData.FinalPermutation[i] - 1];
+            }
+
+            return finalPermutation.IntArrayToString();
         }
 
 
