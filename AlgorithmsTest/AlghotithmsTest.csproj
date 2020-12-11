@@ -17,4 +17,10 @@
     <ProjectReference Include="..\DES\Alghotithms.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AESAlgorithmTest\" />
+    <Folder Include="AljamalAlgorithmTest\" />
+    <Folder Include="RSAAlgorithmTest\" />
+  </ItemGroup>
+
 </Project>

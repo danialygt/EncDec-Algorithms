@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{680B00DD-461
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{805AAE44-EF93-4D2C-89FA-12A2CBA056A8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alghotithms", "EncDec Algorithms\Alghotithms.csproj", "{7033D1D0-F927-4DBF-99F3-5A55D8995452}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alghotithms", "Algorithms\Alghotithms.csproj", "{7033D1D0-F927-4DBF-99F3-5A55D8995452}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlghotithmsTest", "EncDec AlgorithmsTest\AlghotithmsTest.csproj", "{DB23D706-AC6E-4948-BC23-7051EF3994FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlghotithmsTest", "AlgorithmsTest\AlghotithmsTest.csproj", "{DB23D706-AC6E-4948-BC23-7051EF3994FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
